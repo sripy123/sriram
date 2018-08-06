@@ -8,18 +8,23 @@ import { AppRoutingModule } from './/app-routing.module';
 import { SchoolRegistrationComponent } from './school-registration/school-registration.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { SchoolService } from './school.service';
+import { SchoolRegFormComponent } from './school-reg-form/school-reg-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     SchoolRegistrationComponent,
-    PageNotFoundComponent
-  ],
+    PageNotFoundComponent,
+    SchoolRegFormComponent
+    ],
   imports: [
     BrowserModule,
     HttpClientModule,
     UiModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [SchoolService],
   bootstrap: [AppComponent]
