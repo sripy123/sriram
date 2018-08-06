@@ -19,7 +19,7 @@ export class SchoolService {
   
   /** POST: add a new hero to the server */
   registerSchool (school: School): Observable<School> {
-  return this._httpClient.post<School>('', school, httpOptions).pipe(
+    return this._httpClient.post<School>('', school, httpOptions).pipe(
     catchError(this.handleError<School>('registerSchool'))
   );
 }

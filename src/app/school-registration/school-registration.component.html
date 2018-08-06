@@ -25,7 +25,10 @@
       <div class="form-group">
         <label class="control-label">School Name</label>
         <div class="controls">
-          <input type="text" class="form-control" id="schoolName" required size="30" maxlength="30" formControlName="name">
+          <input type="text" class="form-control" id="schoolName" required formControlName="name">
+        </div>
+        <div class="text-danger" *ngIf="name.touched">
+          <p>School name is required</p>
         </div>
       </div>
 
@@ -35,20 +38,26 @@
           <option value="">Select School Type</option>
           <option *ngFor='let schoolType of schoolTypes' [value]="schoolType">{{schoolType}}</option>
         </select>
+        <div class="text-danger" *ngIf="type.touched">
+          <p>School type is required</p>
+        </div>
       </div>
-
 
       <div class="form-group">
         <label class="control-label">Number of Students</label>
-        <input type="text" class="form-control" id="noOfStudents" required size="30" maxlength="30" formControlName="studNos">
+        <input type="number" class="form-control" id="noOfStudents" formControlName="studNos">
+        <div class="text-danger" *ngIf="studNos.touched">
+          <p>Number of students required</p>
+        </div>
       </div>
-
-
 
       <div class="form-group">
         <label class="control-label">Number of Teachers</label>
         <div class="controls">
-          <input type="text" class="form-control" id="noOfTeachers" required size="30" maxlength="30" formControlName="teachNos">
+          <input type="number" class="form-control" id="noOfTeachers" formControlName="teachNos">
+        </div>
+        <div class="text-danger" *ngIf="teachNos.touched">
+          <p>Number of teachers required</p>
         </div>
       </div>
 
@@ -58,19 +67,31 @@
 
       <div class="form-group">
         <label class="control-label">Primary Contact</label>
-        <input type="text" class="form-control" id="priName" required size="30" maxlength="30" formControlName="priName">
+        <input type="text" class="form-control" id="priName" formControlName="priName">
+        <div class="text-danger" *ngIf="priName.touched">
+          <p>Primary Contact name is required</p>
+        </div>
       </div>
 
       <div class="form-group">
-        <label class="control-label">Primary Contact Number</label>
-        <input type="text" class="form-control" id="priNum" required size="30" maxlength="30" formControlName="priNum">
+        <label >Primary Contact Number</label>
+        <input type="text" class="form-control" id="priNum" formControlName="priNum">
+        <div class="text-danger" *ngIf="priNum.touched">
+          <p>Contact number is required</p>
+        </div>
       </div>
 
-      <div class="form-group">
+      <div class="form-group" [ngClass]="{
+        'has-success':priEmail.valid && (priEmail.dirty || priEmail.touched),
+        'has-danger':priEmail.invalid && (priEmail.dirty || priEmail.touched)
+      }">
         <label class="control-label">Primary Contact Email</label>
-        <input type="text" class="form-control" id="priEmail" required size="30" maxlength="30" formControlName="priEmail">
+        <input type="text" class="form-control" id="priEmail" formControlName="priEmail">
+        <div class="text-danger" *ngIf="priEmail.invalid && (priEmail.dirty || priEmail.touched)">
+          <p *ngIf="priEmail.errors.required">Email is required</p>
+          <p *ngIf="priEmail.errors.pattern">Wrong Email pattern</p>
+        </div>
       </div>
-
 
       <div class="form-group">
         <label class="control-label">Secondary Contact</label>
@@ -85,25 +106,35 @@
       <div class="form-group">
         <label class="control-label">Secondary Contact Email</label>
         <input type="text" class="form-control" id="secEmail" size="30" maxlength="30" formControlName="secEmail">
+        <div class="text-danger" *ngIf="secEmail.invalid && (secEmail.dirty || secEmail.touched)">
+          <p *ngIf="secEmail.errors.pattern">Wrong Email pattern</p>
+        </div>
       </div>
     </fieldset>
 
     <fieldset formGroupName="address">
-
-
       <div class="form-group">
         <label class="control-label">Address</label>
-        <input type="text" class="form-control" id="schoolAddress" size="30" maxlength="30" formControlName="addressLine1">
+        <input type="text" class="form-control" id="addressLine1" formControlName="addressLine1">
+        <div class="text-danger" *ngIf="addressLine1.touched">
+          <p>School Address is required</p>
+        </div>
       </div>
 
       <div class="form-group">
         <label class="control-label">Street Name</label>
-        <input type="text" class="form-control" id="streetName" size="30" maxlength="30" formControlName="addressLine2">
+        <input type="text" class="form-control" id="addressLine2" formControlName="addressLine2">
+        <div class="text-danger" *ngIf="addressLine2.touched">
+          <p>School Address is required</p>
+        </div>
       </div>
 
       <div class="form-group">
         <label class="control-label">Town/City</label>
-        <input type="text" class="form-control" id="city" size="30" maxlength="30" formControlName="city">
+        <input type="text" class="form-control" id="city"formControlName="city">
+        <div class="text-danger" *ngIf="city.touched">
+          <p>City is required</p>
+        </div>
       </div>
 
       <!--div class="control-group">
@@ -118,11 +149,13 @@
 
       <div class="control-group">
         <label class="control-label">State</label>
-
         <select id="state" class="form-group" formControlName="state">
           <option value="">Select State</option>
           <option *ngFor='let state of states' [value]="state">{{state}}</option>
         </select>
+        <div class="text-danger" *ngIf="state.touched">
+          <p>State is required</p>
+        </div>
       </div>
 
 
@@ -135,6 +168,9 @@
           <option value="">Select RequirementType</option>
           <option *ngFor='let reqType of reqTypes' [value]="reqType">{{reqType}}</option>
         </select>
+        <div class="text-danger" *ngIf="reqType.touched">
+          <p>Requirement Type is required</p>
+        </div>
       </div>
 
       <div class="control-group">
@@ -143,8 +179,10 @@
           <option value="">Select AssetType</option>
           <option *ngFor='let assetType of assetTypes' [value]="assetType">{{assetType}}</option>
         </select>
+        <div class="text-danger" *ngIf="assetType.touched">
+          <p>Asset Type is required</p>
+        </div>
       </div>
-
 
       <div class="control-group">
         <label class="control-label">Asset Name</label>
@@ -152,13 +190,18 @@
           <option value="">Select AssetName</option>
           <option *ngFor='let assetName of assetNames' [value]="assetName">{{assetName}}</option>
         </select>
-
+        <div class="text-danger" *ngIf="assetName.touched">
+          <p>Asset Name is required</p>
+        </div>
       </div>
 
 
       <div class="form-group">
         <label class="control-label">Quantity</label>
         <input type="number" class="form-control" id="quantity" formControlName="quantity">
+        <div class="text-danger" *ngIf="quantity.touched">
+          <p>Quantity is required</p>
+        </div>
       </div>
 
       <div class="form-group">
@@ -180,9 +223,7 @@
 
       <div class="form-group">
         <label class="control-label">Comments / Message to Trust</label>
-
         <textarea class="form-control" id="comments" rows="3" formControlName="comments"></textarea>
-
       </div>
     </fieldset>
 
