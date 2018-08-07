@@ -100,7 +100,7 @@ export class SchoolRegistrationComponent implements OnInit {
 
   createFormControls() {
     this.name = new FormControl('',Validators.required);
-    this.type = new FormControl('',Validators.required);
+    this.type = new FormControl('-1',Validators.required);
     this.studNos = new FormControl('',Validators.required);
     this.teachNos = new FormControl('',Validators.required);
 
@@ -119,12 +119,12 @@ export class SchoolRegistrationComponent implements OnInit {
     this.addressLine1 =  new FormControl('',Validators.required);
     this.addressLine2 = new FormControl('',Validators.required);
     this.city = new FormControl('',Validators.required);
-    this.district = new FormControl('',Validators.required);
-    this.state = new FormControl('',Validators.required);
+    this.district = new FormControl('-1',Validators.required);
+    this.state = new FormControl('-1',Validators.required);
 
-    this.reqType =  new FormControl('',Validators.required);
-    this.assetType = new FormControl('',Validators.required);
-    this.assetName = new FormControl('',Validators.required);
+    this.reqType =  new FormControl('-1',Validators.required);
+    this.assetType = new FormControl('-1',Validators.required);
+    this.assetName = new FormControl('-1',Validators.required);
     this.quantity = new FormControl('',Validators.required);
 
     this.comments = new FormControl('',Validators.required);

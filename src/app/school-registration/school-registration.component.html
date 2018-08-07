@@ -35,10 +35,10 @@
       <div class="form-group">
         <label class="control-label">School Type</label>
         <select id="schoolType" class="form-control" formControlName="type">
-          <option value="">Select School Type</option>
+          <option value="-1">Select School Type</option>
           <option *ngFor='let schoolType of schoolTypesLD' [value]="schoolType.key">{{schoolType.value}}</option>
         </select>
-        <div class="text-danger" *ngIf="type.touched">
+        <div class="text-danger" *ngIf="(type.touched && type.value=='-1')">
           <p>School type is required</p>
         </div>
       </div>
@@ -140,19 +140,22 @@
       <div class="form-group">
         <label class="control-label">District</label>
         <select id="district" class="form-control" formControlName="district">
-          <option value="">Select District</option>
+          <option value="-1">Select District</option>
           <option *ngFor='let district of districtsLD' [value]="district.key">{{district.value}}</option>
         </select>
+        <div class="text-danger" *ngIf="(district.touched && district.value=='-1')">
+          <p>District is required</p>
+        </div>
       </div>
 
 
       <div class="form-group">
         <label class="control-label">State</label>
         <select id="state" class="form-control" formControlName="state">
-          <option value="">Select State</option>
+          <option value="-1">Select State</option>
           <option *ngFor='let state of statesLD' [value]="state.key">{{state.value}}</option>
         </select>
-        <div class="text-danger" *ngIf="state.touched">
+        <div class="text-danger" *ngIf="(state.touched && state.value=='-1')">
           <p>State is required</p>
         </div>
       </div>
@@ -164,10 +167,10 @@
       <div class="form-group">
         <label class="control-label">Type</label>
         <select id="reqType" class="form-control" formControlName="state" formControlName="reqType">
-          <option value="">Select RequirementType</option>
+          <option value="-1">Select RequirementType</option>
           <option *ngFor='let reqType of reqTypesLD' [value]="reqType.key">{{reqType.value}}</option>
         </select>
-        <div class="text-danger" *ngIf="reqType.touched">
+        <div class="text-danger" *ngIf="(reqType.touched && reqType.value=='-1')">
           <p>Requirement Type is required</p>
         </div>
       </div>
@@ -175,10 +178,10 @@
       <div class="form-group">
         <label class="control-label">Asset Type</label>
         <select id="assetType" class="form-control" formControlName="assetType">
-          <option value="">Select AssetType</option>
+          <option value="-1">Select AssetType</option>
           <option *ngFor='let assetType of assetTypesLD' [value]="assetType.key">{{assetType.value}}</option>
         </select>
-        <div class="text-danger" *ngIf="assetType.touched">
+        <div class="text-danger" *ngIf="(assetType.touched && assetType.value=='-1')">
           <p>Asset Type is required</p>
         </div>
       </div>
@@ -186,10 +189,10 @@
       <div class="form-group">
         <label class="control-label">Asset Name</label>
         <select id="assetName" class="form-control" formControlName="assetName">
-          <option value="">Select AssetName</option>
+          <option value="-1">Select AssetName</option>
           <option *ngFor='let assetName of assetNamesLD' [value]="assetName.key">{{assetName.value}}</option>
         </select>
-        <div class="text-danger" *ngIf="assetName.touched">
+        <div class="text-danger" *ngIf="(assetName.touched && assetName.value=='-1')">
           <p>Asset Name is required</p>
         </div>
       </div>
