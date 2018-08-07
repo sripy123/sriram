@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { UiModule } from './ui/ui.module';
-import { AppRoutingModule } from './/app-routing.module';
+import { AppRoutingModule } from './app-routing.module';
 import { SchoolRegistrationComponent } from './school-registration/school-registration.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { SchoolService } from './school.service';

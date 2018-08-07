@@ -1,25 +1,42 @@
-    export interface Address {
-        addressLine1: string;
-        addressLine2: string;
-        city: string;
-        district: string;
-    }
-
-    export interface Requirement {
-        reqType: string;
-        assetType: string;
-        assetName: string;
-        quantity: number;
-    }
-
-    export interface School {
-        address: Address;
-        proofOfIdentity: number;
-        schoolName: string;
-        schoolType: string;
-        headMasterName: string;
-        headMasterEmail: string;
-        numberOfTechers: number;
-        numberOfStudents: number;
-        requirements: Requirement[];
-    }
+        export interface SchoolInfo {
+            name: string;
+            type: string;
+            studNos: string;
+            teachNos: string;
+        }
+    
+        export interface Contacts {
+            priName: string;
+            priNum: string;
+            priEmail: string;
+            secName: string;
+            secNum: string;
+            secEmail: string;
+        }
+    
+        export interface Address {
+            addressLine1: string;
+            addressLine2: string;
+            city: string;
+            district: string;
+            state: string;
+        }
+    
+        export interface Requirement {
+            reqType: string;
+            assetType: string;
+            assetName: string;
+            quantity: string;
+        }
+    
+        export interface ProofOfId {
+            comments: string;
+        }
+    
+        export interface School {
+            schoolInfo: SchoolInfo;
+            contacts: Contacts;
+            address: Address;
+            requirement: Requirement;
+            proofOfId: ProofOfId;
+        } 

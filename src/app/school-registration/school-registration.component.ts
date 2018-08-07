@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormControl, ReactiveFormsModule, Validators} from '@angular/forms';
+import {LookUpService} from '../look-up.service';
+import {LookUps} from '../model/lookUps';
+
 
 @Component({
   selector: 'app-school-registration',
@@ -7,13 +10,6 @@ import {FormGroup, FormControl, ReactiveFormsModule, Validators} from '@angular/
   styleUrls: ['./school-registration.component.css']
 })
 export class SchoolRegistrationComponent implements OnInit {
-  schoolTypes:string[] = ['Nursery','Primary','Middle School','Secondary School','Higher Secondary School'];
-  districts:string[] = ['Trichy','Vellur','Kanyakumari'];
-  states:string[] = ['Tamilnadu','Kerala'];
-  reqTypes:string[] = ['New','Maintenance'];
-  assetTypes:string[] = ['Sports','Infrastructure'];
-  assetNames:string[] = ['Football','Bathroom'];
-
   schoolRegForm:FormGroup;
   schoolInfo:FormGroup;
   contacts:FormGroup;
@@ -35,6 +31,7 @@ export class SchoolRegistrationComponent implements OnInit {
   addressLine2:  FormControl;
   city:  FormControl;
   state: FormControl;
+  district: FormControl;
 
   reqType: FormControl;
   assetType: FormControl;
@@ -45,11 +42,60 @@ export class SchoolRegistrationComponent implements OnInit {
   proofOfId: FormGroup;
   comments: FormControl;
 
-  constructor() { }
+  districtsLD:LookUps;
+  reqTypesLD:LookUps;
+  assetTypesLD:LookUps;
+  assetNamesLD:LookUps;
+  statesLD:LookUps;
+  schoolTypesLD:LookUps;
+
+  constructor(private lookUpService: LookUpService) { }
 
   ngOnInit() {
     this.createFormControls();
     this.createForm();
+    this.getDistricts();
+    this.getReqTypes();
+    this.getAssetTypes();
+    this.getAssetNames();
+    this.getStates();
+    this.getSchoolTypes();
+  }
+
+  getDistricts() {
+    this.lookUpService.getDistricts().subscribe(data => {
+      this.districtsLD = <LookUps>data;
+    });
+  }
+
+  getReqTypes() {
+    this.lookUpService.getReqTypes().subscribe(data => {
+      this.reqTypesLD = <LookUps>data;
+    });
+  }
+
+  getAssetTypes() {
+    this.lookUpService.getAssetTypes().subscribe(data => {
+      this.assetTypesLD = <LookUps>data;
+    });
+  }
+
+  getAssetNames() {
+    this.lookUpService.getAssetTypes().subscribe(data => {
+      this.assetNamesLD = <LookUps>data;
+    });
+  }
+
+  getStates() {
+    this.lookUpService.getStates().subscribe(data => {
+      this.statesLD = <LookUps>data;
+    });
+  }
+
+  getSchoolTypes() {
+    this.lookUpService.getSchoolTypes().subscribe(data => {
+      this.schoolTypesLD = <LookUps>data;
+    });
   }
 
   createFormControls() {
@@ -73,6 +119,7 @@ export class SchoolRegistrationComponent implements OnInit {
     this.addressLine1 =  new FormControl('',Validators.required);
     this.addressLine2 = new FormControl('',Validators.required);
     this.city = new FormControl('',Validators.required);
+    this.district = new FormControl('',Validators.required);
     this.state = new FormControl('',Validators.required);
 
     this.reqType =  new FormControl('',Validators.required);
@@ -104,6 +151,7 @@ export class SchoolRegistrationComponent implements OnInit {
         addressLine1: this.addressLine1,
         addressLine2: this.addressLine2,
         city: this.city,
+        district: this.district,
         state: this.state 
       }),
       requirement: new FormGroup({

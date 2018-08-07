@@ -1,0 +1,40 @@
+{
+  "lookUpData":  [  
+    {  
+       "field":"district",
+       "key":"kanchipuram",
+       "value":"Kanchipuram",
+       "parentField":"state",
+       "parentKey":"TN"
+    },
+    {  
+       "field":"district",
+       "key":"tiruvallur",
+       "value":"Tiruvallur",
+       "parentField":"state",
+       "parentKey":"TN"
+    },
+    {  
+        "field":"reqtype",
+        "key":"maintenance",
+        "value":"Maintenance",
+        "parentField":null,
+        "parentKey":null
+     },
+     {  
+        "field":"reqtype",
+        "key":"new",
+        "value":"New Requirement",
+        "parentField":null,
+        "parentKey":null
+     },
+     {"field":"assettype","key":"infrastructure","value":"Infrastructure","parentField":null,"parentKey":null},{"field":"assettype","key":"others","value":"Others","parentField":null,"parentKey":null},{"field":"assettype","key":"sports","value":"Sports","parentField":null,"parentKey":null},
+     {"field":"asset","key":"football","value":"Football","parentField":"assettype","parentKey":"sports"},{"field":"asset","key":"other_sports","value":"Others","parentField":"assettype","parentKey":"sports"},
+     {"field":"state","key":"TN","value":"Tamil Nadu","parentField":null,"parentKey":null},
+     {"field":"schooltype","key":"n","value":"Nursery","parentField":null,"parentKey":null},
+      {"field":"schooltype","key":"p","value":"Primary","parentField":null,"parentKey":null},
+      {"field":"schooltype","key":"ms","value":"Middle School","parentField":null,"parentKey":null},
+      {"field":"schooltype","key":"ss","value":"Secondary School","parentField":null,"parentKey":null},
+      {"field":"schooltype","key":"hss","value":"Higher Secondary School","parentField":null,"parentKey":null}
+    ]
+}
