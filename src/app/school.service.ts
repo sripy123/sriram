@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Http } from '@angular/http';
+import {FormGroup} from '@angular/forms';
+
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
@@ -14,14 +17,18 @@ const httpOptions = {
 })
 export class SchoolService {
 
-  constructor(private _httpClient: HttpClient) { }
+  constructor(private http: Http) { }
 
   
   /** POST: add a new hero to the server */
-  registerSchool (school: School): Observable<School> {
-    return this._httpClient.post<School>('', school, httpOptions).pipe(
+ /* registerSchool (school: School): Observable<School> {
+    return this._httpClient.post<School>('http://localhost:3000/schools', school, httpOptions).pipe(
     catchError(this.handleError<School>('registerSchool'))
   );
+}*/
+
+registerSchool (school: any) {
+  return this.http.post('http://localhost:3000/schools', school.value);
 }
 
 
@@ -33,7 +40,7 @@ export class SchoolService {
    */
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
- 
+ console.log("Error happening for post call");
       // TODO: send the error to remote logging infrastructure
       console.error(error); // log to console instead
  

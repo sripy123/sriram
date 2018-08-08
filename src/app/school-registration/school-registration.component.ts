@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormControl, ReactiveFormsModule, Validators} from '@angular/forms';
 import {LookUpService} from '../look-up.service';
+import {SchoolService} from '../school.service';
 import {LookUps} from '../model/lookUps';
-
+import {School} from '../model/school';
 
 @Component({
   selector: 'app-school-registration',
@@ -49,7 +50,7 @@ export class SchoolRegistrationComponent implements OnInit {
   statesLD:LookUps;
   schoolTypesLD:LookUps;
 
-  constructor(private lookUpService: LookUpService) { }
+  constructor(private lookUpService: LookUpService, private schoolService: SchoolService) { }
 
   ngOnInit() {
     this.createFormControls();
@@ -164,5 +165,13 @@ export class SchoolRegistrationComponent implements OnInit {
         comments: this.comments
        })     
     });
+  }
+
+  addSchoolRegForm(){
+    this.schoolService.registerSchool(this.schoolRegForm)
+    .subscribe(
+      (response) => console.log(response),
+      (error) => console.log(error)
+    );
   }
 }
