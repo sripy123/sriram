@@ -8,7 +8,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { SchoolRegistrationComponent } from './school-registration/school-registration.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { SchoolService } from './school.service';
-import { SchoolRegFormComponent } from './school-reg-form/school-reg-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
 
@@ -16,8 +15,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   declarations: [
     AppComponent,
     SchoolRegistrationComponent,
-    PageNotFoundComponent,
-    SchoolRegFormComponent
+    PageNotFoundComponent
     ],
   imports: [
     BrowserModule,

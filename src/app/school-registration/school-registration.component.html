@@ -216,13 +216,29 @@
       </div>
 
       <div class="form-group">
-        <button class="btn btn-primary btn-sm">Add Requirement</button>
+        <button class="btn btn-primary btn-sm" [disabled]="isReqBtnDisabled()" (click)="addRequirement()">Add Requirement</button>
       </div>
 
       <div class="form-group">
         <button class="btn btn-primary btn-sm">Delete Requirement</button>
       </div>
 
+      <table border="1">
+        <tr>
+          <th>Select</th>
+          <th>Requirement Type</th>
+          <th>Asset Type</th>
+          <th>Asset Name</th>
+          <th>Quantity</th>
+        </tr>
+        <tr *ngFor='let requirement of requirements'>
+          <td><input type="checkbox"></td>
+          <td>{{requirement.reqType}}</td>
+          <td>{{requirement.assetType}}</td>
+          <td>{{requirement.assetName}}</td>
+          <td>{{requirement.quantity}}</td>
+        </tr>
+      </table>
     </fieldset>
     <fieldset formGroupName="proofOfId">
 

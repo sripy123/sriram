@@ -40,7 +40,7 @@ registerSchool (school: any) {
    */
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
- console.log("Error happening for post call");
+     console.log("Error happening for post call");
       // TODO: send the error to remote logging infrastructure
       console.error(error); // log to console instead
  

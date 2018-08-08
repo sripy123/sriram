@@ -50,6 +50,9 @@ export class SchoolRegistrationComponent implements OnInit {
   statesLD:LookUps;
   schoolTypesLD:LookUps;
 
+  
+  public requirements: any[] = []; 
+
   constructor(private lookUpService: LookUpService, private schoolService: SchoolService) { }
 
   ngOnInit() {
@@ -100,7 +103,7 @@ export class SchoolRegistrationComponent implements OnInit {
   }
 
   createFormControls() {
-    this.name = new FormControl('',Validators.required);
+    this.name = new FormControl('',<any>Validators.required);
     this.type = new FormControl('-1',Validators.required);
     this.studNos = new FormControl('',Validators.required);
     this.teachNos = new FormControl('',Validators.required);
@@ -167,7 +170,23 @@ export class SchoolRegistrationComponent implements OnInit {
     });
   }
 
-  addSchoolRegForm(){
+  isReqBtnDisabled() {
+    if(this.reqType.dirty && 
+      this.assetType.dirty && 
+      this.assetName.dirty && 
+      this.quantity.dirty) {
+        return false;
+      } else {
+        return true;
+      }
+  }
+
+  addRequirement() {
+    this.requirements.push(JSON.parse(JSON.stringify(this.schoolRegForm.controls.requirement.value)));//TODO: Not right optimize it
+    this.schoolRegForm.controls.requirement.reset();
+  }
+
+  addSchoolRegForm() {
     this.schoolService.registerSchool(this.schoolRegForm)
     .subscribe(
       (response) => console.log(response),
