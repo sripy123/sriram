@@ -1,0 +1,9 @@
+input[type=text].ng-invalid.ng-touched{
+    border: 1px solid red;
+}
+input[type=number].ng-invalid.ng-touched{
+    border: 1px solid red;
+}
+select.ng-invalid.ng-touched{
+    border: 1px solid red;
+}

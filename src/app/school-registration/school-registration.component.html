@@ -20,13 +20,12 @@
   </div>
 
   <!-- Tab 1 -->
+  <div class="container">
   <form [formGroup]="schoolRegForm" novalidate>
     <fieldset formGroupName="schoolInfo">
       <div class="form-group">
-        <label class="control-label">School Name</label>
-        <div class="controls">
-          <input type="text" class="form-control" id="schoolName" required formControlName="name">
-        </div>
+        <label class="control-label">School Name</label><span class="text-danger" *ngIf="(name.touched && !name.dirty)">School name is required</span> 
+        <input type="text" class="form-control" id="schoolName" formControlName="name">
         <div class="text-danger" *ngIf="(name.touched && !name.dirty)">
           <p>School name is required</p>
         </div>
@@ -34,7 +33,7 @@
 
       <div class="form-group">
         <label class="control-label">School Type</label>
-        <select id="schoolType" class="form-control" formControlName="type">
+        <select id="schoolType" class="form-control" formControlName="type" ng-required="required">
           <option value="-1">Select School Type</option>
           <option value="asdf">asdf</option>
           <option *ngFor='let schoolType of schoolTypesLD' [value]="schoolType.key">{{schoolType.value}}</option>
@@ -216,14 +215,14 @@
       </div>
 
       <div class="form-group">
-        <button class="btn btn-primary btn-sm" [disabled]="isReqBtnDisabled()" (click)="addRequirement()">Add Requirement</button>
+        <button class="btn btn-primary btn-sm"  (click)="addRequirement()">Add Requirement</button>
       </div>
 
-      <div class="form-group">
+      <div class="form-group" *ngIf="(requirements.length > 0)">
         <button class="btn btn-primary btn-sm">Delete Requirement</button>
       </div>
 
-      <table border="1">
+      <table border="1" *ngIf="(schoolRegForm.get('requirements').length > 0)">
         <tr>
           <th>Select</th>
           <th>Requirement Type</th>
@@ -231,14 +230,16 @@
           <th>Asset Name</th>
           <th>Quantity</th>
         </tr>
-        <tr *ngFor='let requirement of requirements'>
-          <td><input type="checkbox"></td>
-          <td>{{requirement.reqType}}</td>
-          <td>{{requirement.assetType}}</td>
-          <td>{{requirement.assetName}}</td>
-          <td>{{requirement.quantity}}</td>
+        <tr *ngFor="let requirement of schoolRegForm.get('requirements').controls; let idx = index">
+          <td><input type="checkbox" value="{{idx}}"></td>
+          <td>{{requirement.controls.reqType.value}}</td>
+          <td>{{requirement.controls.assetType.value}}</td>
+          <td>{{requirement.controls.assetName.value}}</td>
+          <td>{{requirement.controls.quantity.value}}</td>
         </tr>
       </table>
+
+
     </fieldset>
     <fieldset formGroupName="proofOfId">
 
@@ -256,9 +257,11 @@
 
   </form>
 
+</div>
   <div class="form-actions">
     <button type="submit" class="btn btn-primary btn-lg" (click)="addSchoolRegForm()" [disabled]="!schoolRegForm.valid">Submit</button>
     <button class="btn btn-primary btn-lg">Cancel</button>
   </div>
 
+  <pre>{{schoolRegForm.value | json}}</pre>
 </div>

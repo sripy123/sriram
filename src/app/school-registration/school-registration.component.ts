@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormGroup, FormControl, ReactiveFormsModule, Validators} from '@angular/forms';
+import {FormGroup, FormControl, Validators, FormBuilder, FormArray} from '@angular/forms';
 import {LookUpService} from '../look-up.service';
 import {SchoolService} from '../school.service';
 import {LookUps} from '../model/lookUps';
@@ -15,6 +15,8 @@ export class SchoolRegistrationComponent implements OnInit {
   schoolInfo:FormGroup;
   contacts:FormGroup;
   address:FormGroup;
+  requirements: FormArray;
+  requirement: FormGroup;
 
   name: FormControl;
   type: FormControl;
@@ -38,8 +40,6 @@ export class SchoolRegistrationComponent implements OnInit {
   assetType: FormControl;
   assetName: FormControl;
   quantity: FormControl;
-
-  requirement: FormControl;
   proofOfId: FormGroup;
   comments: FormControl;
 
@@ -51,9 +51,8 @@ export class SchoolRegistrationComponent implements OnInit {
   schoolTypesLD:LookUps;
 
   
-  public requirements: any[] = []; 
 
-  constructor(private lookUpService: LookUpService, private schoolService: SchoolService) { }
+  constructor(private lookUpService: LookUpService, private schoolService: SchoolService, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
     this.createFormControls();
@@ -133,9 +132,19 @@ export class SchoolRegistrationComponent implements OnInit {
 
     this.comments = new FormControl('',Validators.required);
 
+    this.requirements = new FormArray([]);
   }
 
+  createItem(): FormGroup {
+    return this.formBuilder.group({
+      name: '',
+      description: '',
+      price: ''
+    });
+  }
+  
   createForm() {
+   // this.requirements = new FormArray([]);
     this.schoolRegForm = new FormGroup({
       schoolInfo: new FormGroup({
         name: this.name,
@@ -164,6 +173,7 @@ export class SchoolRegistrationComponent implements OnInit {
         assetName:this.assetName,
         quantity:this.quantity 
       }),
+      requirements : new FormArray([]),
       proofOfId: new FormGroup({
         comments: this.comments
        })     
@@ -182,7 +192,13 @@ export class SchoolRegistrationComponent implements OnInit {
   }
 
   addRequirement() {
-    this.requirements.push(JSON.parse(JSON.stringify(this.schoolRegForm.controls.requirement.value)));//TODO: Not right optimize it
+    (<FormArray>this.schoolRegForm.controls.requirements).push(new FormGroup({
+      reqType: new FormControl(this.schoolRegForm.controls.requirement.value.reqType),
+      assetType: new FormControl(this.schoolRegForm.controls.requirement.value.assetType),
+      assetName: new FormControl(this.schoolRegForm.controls.requirement.value.assetName),
+      quantity:new FormControl(this.schoolRegForm.controls.requirement.value.quantity) 
+    }));
+    console.log(this.schoolRegForm.controls.requirements);
     this.schoolRegForm.controls.requirement.reset();
   }
 
