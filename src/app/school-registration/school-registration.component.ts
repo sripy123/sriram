@@ -180,6 +180,10 @@ export class SchoolRegistrationComponent implements OnInit {
     });
   }
 
+  deleteReq(index) {
+    (<FormArray>this.schoolRegForm.controls.requirements).removeAt(index); 
+  }
+
   isReqBtnDisabled() {
     if(this.reqType.dirty && 
       this.assetType.dirty && 

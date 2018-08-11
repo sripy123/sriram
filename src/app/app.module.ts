@@ -8,7 +8,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { SchoolRegistrationComponent } from './school-registration/school-registration.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { SchoolService } from './school.service';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     HttpModule,
     UiModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule.forRoot()
   ],
   providers: [SchoolService],
   bootstrap: [AppComponent]
